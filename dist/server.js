@@ -31,14 +31,14 @@ app.use(_bodyParser.default.urlencoded({
   extended: true
 })); // app.use(express.static(path.join(__dirname, '/ui')));
 
-app.use(_express.default.static(__dirname.replace('src', 'ui')));
+app.use(_express.default.static(__dirname.replace('dist', 'ui')));
 app.use('/api/v1/meals', _meals.default);
 app.use('/api/v1/menus', _menus.default);
 app.use('/api/v1/orders', _orders.default);
 app.use('/auth/users/', _users.default);
 var port = process.env.PORT || 5000;
 app.get('/', function (req, res) {
-  res.sendFile(__dirname.replace('src', 'ui\\index.html'));
+  res.sendFile(__dirname.replace('dist', 'ui\\index.html'));
 }); // sequelize.sync({ force: eraseDatabaseOnSync }).then(async () => {
 //   if (eraseDatabaseOnSync) {
 //   console.log('seeding DB');

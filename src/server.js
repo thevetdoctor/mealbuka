@@ -17,7 +17,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 // app.use(express.static(path.join(__dirname, '/ui')));
-app.use(express.static(__dirname.replace('src', 'ui')));
+app.use(express.static(__dirname.replace('dist', 'ui')));
 
 
 app.use('/api/v1/meals', meals);
