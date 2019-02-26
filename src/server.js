@@ -29,7 +29,7 @@ app.use('/auth/users/', users);
 const port = process.env.PORT || 5000;
 
 app.get('/', (req, res) => {
-  res.sendFile(__dirname.replace('src', 'ui\\index.html'));
+  res.sendFile(__dirname.replace('dist', 'ui\\index.html'));
 });
 
 // sequelize.sync({ force: eraseDatabaseOnSync }).then(async () => {
