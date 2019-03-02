@@ -8,7 +8,7 @@ import orders from './api/routes/orders';
 import users from './api/routes/users';
 import sendMail from './api/routes/sendMail';
 import { sequelize } from './api/models';
-import seeders from './api/models/seeders';
+// import seeders from './api/models/seeders';
 
 
 const app = express();
@@ -42,7 +42,7 @@ sequelize.sync({ force: eraseDatabaseOnSync }).then(() => {
   console.log('seeding DB');
   console.log(seeders);
   // eslint-disable-next-line no-unused-expressions
-  seeders.seedObj();
+  // seeders.seedObj();
   // }
 });
 
