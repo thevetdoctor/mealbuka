@@ -5,6 +5,8 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = void 0;
 
+var _regeneratorRuntime = _interopRequireDefault(require("regenerator-runtime"));
+
 var _index = _interopRequireDefault(require("./index"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -19,8 +21,8 @@ var seeders = {
   seedObj: function () {
     var _seedObj = _asyncToGenerator(
     /*#__PURE__*/
-    regeneratorRuntime.mark(function _callee() {
-      return regeneratorRuntime.wrap(function _callee$(_context) {
+    _regeneratorRuntime.default.mark(function _callee() {
+      return _regeneratorRuntime.default.wrap(function _callee$(_context) {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:

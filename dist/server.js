@@ -9,6 +9,8 @@ var _express = _interopRequireDefault(require("express"));
 
 var _bodyParser = _interopRequireDefault(require("body-parser"));
 
+var _regeneratorRuntime = _interopRequireDefault(require("regenerator-runtime"));
+
 var _meals = _interopRequireDefault(require("./api/routes/meals"));
 
 var _menus = _interopRequireDefault(require("./api/routes/menus"));
@@ -21,11 +23,12 @@ var _sendMail = _interopRequireDefault(require("./api/routes/sendMail"));
 
 var _models = require("./api/models");
 
+var _seeders = _interopRequireDefault(require("./api/models/seeders"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /* eslint-disable no-console */
 // import path from 'path';
-// import seeders from './api/models/seeders';
 var app = (0, _express.default)();
 var eraseDatabaseOnSync = true;
 app.use(_bodyParser.default.json());
@@ -49,10 +52,11 @@ _models.sequelize.sync({
   force: eraseDatabaseOnSync
 }).then(function () {
   // if (eraseDatabaseOnSync) {
-  console.log('seeding DB');
-  console.log(seeders); // eslint-disable-next-line no-unused-expressions
-  // seeders.seedObj();
-  // }
+  console.log('seeding DB'); // console.log(seeders);
+  // eslint-disable-next-line no-unused-expressions
+
+  _seeders.default.seedObj(); // }
+
 });
 
 app.listen(port, function () {

@@ -2,13 +2,14 @@
 import express from 'express';
 import bodyParser from 'body-parser';
 // import path from 'path';
+import regeneratorRuntime from 'regenerator-runtime';
 import meals from './api/routes/meals';
 import menus from './api/routes/menus';
 import orders from './api/routes/orders';
 import users from './api/routes/users';
 import sendMail from './api/routes/sendMail';
 import { sequelize } from './api/models';
-// import seeders from './api/models/seeders';
+import seeders from './api/models/seeders';
 
 
 const app = express();
@@ -40,9 +41,9 @@ app.get('/', (req, res) => {
 sequelize.sync({ force: eraseDatabaseOnSync }).then(() => {
   // if (eraseDatabaseOnSync) {
   console.log('seeding DB');
-  console.log(seeders);
+  // console.log(seeders);
   // eslint-disable-next-line no-unused-expressions
-  // seeders.seedObj();
+  seeders.seedObj();
   // }
 });
 

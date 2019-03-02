@@ -1,4 +1,5 @@
 // import User from './users';
+import regeneratorRuntime from 'regenerator-runtime';
 import models from './index';
 // import mealsRecord from './meals';
 
