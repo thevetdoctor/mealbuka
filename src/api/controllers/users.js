@@ -23,33 +23,44 @@ const UsersController = {
 
     // check validity of user name & password
     if (validUser(req.body)) {
+      // check if user is already registered
       models.User.findAll()
         .then((response) => {
           const userIds = response.map(value => value.id);
-          const userNames = response.map(value => value.name);
+          const userEmails = response.map(value => value.email);
           const lastUserId = Math.max(...userIds);
-          if (userNames.includes(user.name)) {
+          if (userEmails.includes(user.email)) {
             res.status(400).json({
               status: 400,
               error: 'Email already used',
             });
           } else {
+            // Assign a unique ID to new user
             user.id = lastUserId + 1;
-            // save user in User table in DB
+            // save user in Users table in DB
             models.User.create(user)
               .then((result) => {
+                const newUser = {
+                  id: result.id,
+                  name: result.name,
+                  email: result.email,
+                  isAdmin: result.isAdmin,
+                };
+                  // create a jwt token for the new user for authentication purposes
+                const token = jwt.sign({ newUser }, 'secretKey', { expiresIn: '1min' }); // end of jwt signing
                 res.status(200).json({
                   status: 200,
                   message: 'New User created',
-                  result,
+                  newUser,
+                  token,
                 });
-              });
-          }
-        });
+              }); // end of models (2)
+          }// end of else (user is a new user)
+        }); // end of .then of models (1)
     } else {
     // send an error
       res.status(401).json({
-        message: 'Signup Failed',
+        message: 'Please check your inputs',
         error: 'Signup Failed',
         reasons: 'Invalid Email/Password must be minimum of 6 characters',
       });
@@ -59,33 +70,23 @@ const UsersController = {
 
   login: (req, res, next) => {
     const user = { email: req.body.email, password: req.body.password };
-
     if (user.email !== '' && user.password !== '') {
+      // Query DB for credentials
       models.User.findAll()
         .then((response) => {
           const userEmails = response.map(value => value.email);
           const userIndex = userEmails.indexOf(user.email);
-          console.log(userEmails);
-          console.log(userIndex);
           const newUser = response[userIndex];
-          console.log(newUser);
-          if (newUser.email === user.email) {
-            if (newUser.password === user.password) {
-              jwt.sign({ user }, 'secretKey', { expiresIn: '1min' }, (err, token) => {
-                if (err) {
-                  res.status(400).json({
-                    status: 400,
-                    error: 'Authorization failed',
-                  });
-                }
-                res.status(200).json({
-                  status: 200,
-                  newUser,
-                  message: 'Login successful',
-                  token,
-                });
+          if (user.email === newUser.email) {
+            if (user.password === newUser.password) {
+              newUser.password = null;
+              const token = jwt.sign({ newUser }, 'secretKey', { expiresIn: '1min' });
+              res.status(200).json({
+                status: 200,
+                newUser,
+                message: 'Login successful',
+                token,
               });
-            /* end of jwt signing */
             } else {
               res.status(400).json({
                 status: 400,
@@ -108,21 +109,22 @@ const UsersController = {
   },
 
 
-  admin: (req, res, next) => {
-    // const userList = usersRecord.map(user => user);
+  // admin: (req, res, next) => {
+  //   // const userList = usersRecord.map(user => user);
 
-    jwt.verify(req.token, 'secretKey', (err, data) => {
-      if (err) {
-        res.sendStatus(403);
-      } else {
-        res.status(200).json({
-          status: 200,
-          message: 'Registered users displayed',
-          // list: userList,
-        });
-      }
-    });
-  },
+  //   jwt.verify(req.token, 'secretKey', (err, data) => {
+  //     if (err) {
+  //       res.sendStatus(403);
+  //     } else {
+  //       res.status(200).json({
+  //         status: 200,
+  //         message: 'Registered users displayed',
+  //         // list: userList,
+  //       });
+  //     }
+  //   });
+  // },
 };
+
 
 export default UsersController;

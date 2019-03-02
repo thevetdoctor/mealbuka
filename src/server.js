@@ -6,8 +6,9 @@ import meals from './api/routes/meals';
 import menus from './api/routes/menus';
 import orders from './api/routes/orders';
 import users from './api/routes/users';
+import sendMail from './api/routes/sendMail';
 import { sequelize } from './api/models';
-// import seeders from './api/models/seeders';
+import seeders from './api/models/seeders';
 
 
 const app = express();
@@ -17,6 +18,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 // app.use(express.static(path.join(__dirname, '/ui')));
+// app.use(express.static(__dirname.replace('src', 'ui')));
 app.use(express.static(__dirname.replace('dist', 'ui')));
 
 
@@ -24,27 +26,32 @@ app.use('/api/v1/meals', meals);
 app.use('/api/v1/menus', menus);
 app.use('/api/v1/orders', orders);
 app.use('/auth/users/', users);
+app.use('/sendMail', sendMail);
 
 
 const port = process.env.PORT || 5000;
 
+
 app.get('/', (req, res) => {
   res.sendFile(__dirname.replace('dist', 'ui\\index.html'));
+  // res.sendFile(__dirname.replace('src', 'ui\\index.html'));
 });
 
-// sequelize.sync({ force: eraseDatabaseOnSync }).then(async () => {
-//   if (eraseDatabaseOnSync) {
-//   console.log('seeding DB');
-//   console.log(seeders);
-//   // eslint-disable-next-line no-unused-expressions
-//   seeders.seedObj();
-//   }
+sequelize.sync({ force: eraseDatabaseOnSync }).then(() => {
+  // if (eraseDatabaseOnSync) {
+  console.log('seeding DB');
+  console.log(seeders);
+  // eslint-disable-next-line no-unused-expressions
+  seeders.seedObj();
+  // }
+});
 
-  app.listen(port, () => {
-    console.log(`Server started at port ${port} for Book-A-Meal App!`);
-    console.log(__dirname.replace('src', 'ui\\index.html'));
-    console.log(__dirname);
-  });
-// });
+app.listen(port, () => {
+  console.log(`Server started at port ${port} for Book-A-Meal App!`);
+  console.log(__dirname.replace('src', 'ui\\index.html'));
+  console.log(__dirname);
+});
 
 export default app;
+
+// "test": "mocha --require @babel/register --recursive",

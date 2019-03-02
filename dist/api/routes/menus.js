@@ -16,7 +16,9 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 // api/routes/menus.js
 var router = _express.default.Router();
 
-router.post('/', _menus.default.addMenu);
-router.get('/', _menus.default.getMenu);
+router.post('/', _index.default, _menus.default.addMenu);
+router.post('/special', _index.default, _menus.default.addMenuSpecial);
+router.get('/', _index.default, _menus.default.getMenu);
+router.get('/all', _index.default, _menus.default.getAllMenu);
 var _default = router;
 exports.default = _default;

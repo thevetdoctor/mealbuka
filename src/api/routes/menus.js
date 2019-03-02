@@ -6,8 +6,13 @@ import auth from '../auth/index';
 
 const router = express.Router();
 
-router.post('/', menusController.addMenu);
+router.post('/', auth, menusController.addMenu);
 
-router.get('/', menusController.getMenu);
+router.post('/special', auth, menusController.addMenuSpecial);
+
+router.get('/', auth, menusController.getMenu);
+
+router.get('/all', auth, menusController.getAllMenu);
+
 
 export default router;

@@ -38,7 +38,7 @@ var seeders = {
               return _index.default.User.create({
                 id: 2,
                 name: 'demilade',
-                email: 'demilade@gmail.com',
+                email: 'thevetdoctor@yahoo.com',
                 password: 'demilade',
                 isAdmin: false
               });

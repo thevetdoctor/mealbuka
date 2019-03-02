@@ -1,45 +1,52 @@
 // ui/app.js
 
-    const signup = document.querySelector('#signup'),
-         display = document.querySelector('.display'),
-        greeting = document.querySelector('#greeting'),
-            form = document.querySelector('form');
-      signupName = document.querySelector('#signupName'),
-     signupEmail = document.querySelector('#signupEmail'),
-  signupPassword = document.querySelector('#signupPassword'),
-        signupUrl = `${apiUrl}auth/users/signup`;
+const signup = document.querySelector('#signup');
+const greeting = document.querySelector('#greeting');
+const signupName = document.querySelector('#signupName');
+const signupEmail = document.querySelector('#signupEmail');
+const signupPassword = document.querySelector('#signupPassword');
+const confirmPassword = document.querySelector('#confirm-password');
+const signupUrl = `${apiUrl}auth/users/signup`;
 
 
 const signUp = (e, _url, user) => {
-	e.preventDefault();
+  e.preventDefault();
 
-	    user = {
-		name: signupName.value,
-		email: signupEmail.value,
-		password: signupPassword.value
-	}
+  greeting.style.color = 'red';
 
-		console.log(user);
+  if (signupPassword.value !== confirmPassword.value) {
+    greeting.innerHTML = 'Please confirm your password';
+    return;
+  }
+  // eslint-disable-next-line no-param-reassign
+  user = {
+    name: signupName.value,
+    email: signupEmail.value,
+    password: signupPassword.value,
+  };
 
-	fetch(signupUrl, {
-		method: 'POST',
-		// mode: 'no-cors',
-		body: JSON.stringify(user),
-		headers: {
-			'Content-Type': 'application/json'
-			}
-		})
-	.then(res => res.json())
-	.then((response) => {
-		greeting.innerHTML = response.message;
-		if (response.message === 'New User created') {
-			window.location.href = './user.html';
-		}
-	})
-	.catch(error => { 
-		console.log(error);
-		greeting.innerHTML = `${error}`;
-	});
-}
+  fetch(signupUrl, {
+    method: 'POST',
+    // mode: 'no-cors',
+    body: JSON.stringify(user),
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  })
+    .then(res => res.json())
+    .then((response) => {
+      greeting.innerHTML = response.message;
+      window.localStorage.setItem('user', JSON.stringify(user));
+      window.localStorage.setItem('token', response.token);
+      if (response.message === 'New User created' && user.isAdmin) {
+        window.location.href = './meals.html';
+      } else if (response.message === 'New User created') {
+        window.location.href = './user.html';
+      }
+    })
+    .catch((error) => {
+      greeting.innerHTML = 'Signup Failed';
+    });
+};
 
 signup.addEventListener('click', signUp);

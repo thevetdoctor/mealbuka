@@ -10,8 +10,8 @@ var config = {
   database: 'bookameal',
   username: 'postgres',
   password: 'animalworld',
-  port: 5433
-}; // herokuPostgresUri: 'postgres://lnzuhcmhegxnbt:8aa4db568300d5d10859db8e704c7db74a4944413a66b8a07ddf99bc86084111@ec2-107-20-167-11.compute-1.amazonaws.com:5432/d58o0uptd9thml';
-
+  port: 5433,
+  herokuPostgresUri: 'postgres://fsmavanxmoigxv:bbf13d1b33da4643bda96d66fe17d0f033d3c1d43cc9420150a2075c811b0e80@ec2-50-19-208-11.compute-1.amazonaws.com:5432/d1suvmqcrsa0d5'
+};
 var _default = config;
 exports.default = _default;

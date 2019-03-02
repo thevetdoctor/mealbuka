@@ -68,7 +68,13 @@ const ordersController = {
     const orderId = parseInt(req.params.id, 10);
     const meal = req.body.mealId;
 
-    if (meal === undefined) {
+    if (!req.params.id || req.params.id === '') {
+      res.status(400).json({
+        status: 'orderId not supplied',
+      });
+    }
+
+    if (req.body.mealId === undefined && req.body.mealId === '') {
       res.status(400).json({
         status: 400,
         error: 'Order not modified',
@@ -76,7 +82,7 @@ const ordersController = {
     } else {
       models.Order.update({ mealId: meal }, { where: { id: orderId } }, { returning: true })
         .then((response) => {
-          if (response) {
+          if (response[0] === 1) {
             res.status(200).json({
               status: 200,
               data: response,
@@ -85,7 +91,7 @@ const ordersController = {
           } else {
             res.status(400).json({
               status: 400,
-              error: `Order id ${orderId} not available`,
+              error: `Order id ${orderId} not updated`,
             });
           }
         });

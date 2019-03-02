@@ -56,6 +56,41 @@ var menusController = {
       }
     });
   },
+  addMenuSpecial: function addMenuSpecial(req, res) {
+    var menu = {
+      id: null,
+      date: req.body.date,
+      list: req.body.list.split(',')
+    };
+    console.log(menu);
+
+    _models.default.Menu.findAll().then(function (menus) {
+      var menuIds = menus.map(function (x) {
+        return x.id;
+      });
+      var menuDates = menus.map(function (y) {
+        return y.date;
+      });
+      var lastId = Math.max.apply(Math, _toConsumableArray(menuIds));
+
+      if (!menuDates.includes(menu.date)) {
+        menu.id = lastId + 1;
+
+        _models.default.Menu.create(menu).then(function (result) {
+          res.status(200).json({
+            status: 200,
+            data: result,
+            message: 'New Menu created'
+          });
+        });
+      } else {
+        res.status(400).json({
+          status: 400,
+          error: 'Menu already exist'
+        });
+      }
+    });
+  },
   getMenu: function getMenu(req, res) {
     _models.default.Menu.findAll({
       where: {
@@ -67,6 +102,22 @@ var menusController = {
           status: 200,
           data: menus,
           message: 'Menu displayed'
+        });
+      } else {
+        res.status(400).json({
+          status: 400,
+          error: 'Menu not available'
+        });
+      }
+    });
+  },
+  getAllMenu: function getAllMenu(req, res) {
+    _models.default.Menu.findAll().then(function (menus) {
+      if (menus.length > 0) {
+        res.status(200).json({
+          status: 200,
+          data: menus,
+          message: 'All Menu(s) displayed'
         });
       } else {
         res.status(400).json({

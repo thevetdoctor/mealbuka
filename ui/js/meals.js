@@ -19,9 +19,9 @@ const update = () => {
     for(let meal of meals){
         count++;
         // output +=  `<div id="${count}" class="meal-class section">${count} - ${meal.name} N${meal.price} <button id="${meal.id}" class="edit">Edit</button> <button id="${meal.id}" class="delete">Delete</button></div>`;
-        output +=  '<div id="' + count + '" class="meal-class">' + count +  
+        output +=  '<div id="' + count + '" class="meal-class">' + count +
                    '-' + meal.name + ' ' + 'N' + meal.price + '<button id="' +
-                   meal.id + '" class="edit">Edit</button> <button id="' + 
+                   meal.id + '" class="edit">Edit</button> <button id="' +
                    meal.id + '" class="delete">Delete</button></div>';
         console.log('id', count);
         }
@@ -70,7 +70,7 @@ const addMeal = () => {
 //     getId = (e) => {
 //         let target = e.target;
 //     }
-//     let id = 
+//     let id =
 // }
 
 

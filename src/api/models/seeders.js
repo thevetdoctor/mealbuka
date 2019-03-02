@@ -17,7 +17,7 @@ const seeders = {
     await models.User.create({
       id: 2,
       name: 'demilade',
-      email: 'demilade@gmail.com',
+      email: 'thevetdoctor@yahoo.com',
       password: 'demilade',
       isAdmin: false,
     });

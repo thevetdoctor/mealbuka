@@ -35,6 +35,40 @@ const menusController = {
   },
 
 
+  addMenuSpecial: (req, res) => {
+    const menu = {
+      id: null,
+      date: req.body.date,
+      list: req.body.list.split(','),
+    };
+
+    console.log(menu);
+
+    models.Menu.findAll()
+      .then((menus) => {
+        const menuIds = menus.map(x => x.id);
+        const menuDates = menus.map(y => y.date);
+        const lastId = Math.max(...menuIds);
+        if (!menuDates.includes(menu.date)) {
+          menu.id = lastId + 1;
+          models.Menu.create(menu)
+            .then((result) => {
+              res.status(200).json({
+                status: 200,
+                data: result,
+                message: 'New Menu created',
+              });
+            });
+        } else {
+          res.status(400).json({
+            status: 400,
+            error: 'Menu already exist',
+          });
+        }
+      });
+  },
+
+
   getMenu: (req, res) => {
     models.Menu.findAll({ where: { date: new Date().toDateString() } })
       .then((menus) => {
@@ -43,6 +77,25 @@ const menusController = {
             status: 200,
             data: menus,
             message: 'Menu displayed',
+          });
+        } else {
+          res.status(400).json({
+            status: 400,
+            error: 'Menu not available',
+          });
+        }
+      });
+  },
+
+
+  getAllMenu: (req, res) => {
+    models.Menu.findAll()
+      .then((menus) => {
+        if (menus.length > 0) {
+          res.status(200).json({
+            status: 200,
+            data: menus,
+            message: 'All Menu(s) displayed',
           });
         } else {
           res.status(400).json({

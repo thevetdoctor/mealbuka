@@ -7,7 +7,7 @@ exports.default = void 0;
 
 var _express = _interopRequireDefault(require("express"));
 
-var _meals = _interopRequireDefault(require("../controllers/meals"));
+var _sendMail = _interopRequireDefault(require("../controllers/sendMail"));
 
 var _index = _interopRequireDefault(require("../auth/index"));
 
@@ -17,9 +17,6 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 // import { Route } from 'express';
 var router = _express.default.Router();
 
-router.post('/', _index.default, _meals.default.addMeal);
-router.put('/:id', _index.default, _meals.default.modifyMeal);
-router.delete('/:id', _index.default, _meals.default.deleteMeal);
-router.get('/', _index.default, _meals.default.getAllMeals);
+router.post('/', _index.default, _sendMail.default.sendMail);
 var _default = router;
 exports.default = _default;

@@ -9,13 +9,13 @@ import auth from '../auth/index';
 const router = express.Router();
 
 
-router.post('/', mealsController.addMeal);
+router.post('/', auth, mealsController.addMeal);
 
-router.put('/:id', mealsController.modifyMeal);
+router.put('/:id', auth, mealsController.modifyMeal);
 
-router.delete('/:id', mealsController.deleteMeal);
+router.delete('/:id', auth, mealsController.deleteMeal);
 
-router.get('/', mealsController.getAllMeals);
+router.get('/', auth, mealsController.getAllMeals);
 
 
 export default router;

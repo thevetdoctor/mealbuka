@@ -82,7 +82,13 @@ var ordersController = {
     var orderId = parseInt(req.params.id, 10);
     var meal = req.body.mealId;
 
-    if (meal === undefined) {
+    if (!req.params.id || req.params.id === '') {
+      res.status(400).json({
+        status: 'orderId not supplied'
+      });
+    }
+
+    if (req.body.mealId === undefined && req.body.mealId === '') {
       res.status(400).json({
         status: 400,
         error: 'Order not modified'
@@ -97,7 +103,7 @@ var ordersController = {
       }, {
         returning: true
       }).then(function (response) {
-        if (response) {
+        if (response[0] === 1) {
           res.status(200).json({
             status: 200,
             data: response,
@@ -106,7 +112,7 @@ var ordersController = {
         } else {
           res.status(400).json({
             status: 400,
-            error: "Order id ".concat(orderId, " not available")
+            error: "Order id ".concat(orderId, " not updated")
           });
         }
       });

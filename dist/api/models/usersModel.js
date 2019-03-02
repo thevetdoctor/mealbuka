@@ -15,7 +15,7 @@ var user = function user(sequelize, DataTypes) {
     },
     name: {
       type: DataTypes.STRING,
-      unique: true
+      unique: false
     },
     email: {
       type: DataTypes.STRING,

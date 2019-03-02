@@ -16,8 +16,8 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 // api/routes/orders.js
 var router = _express.default.Router();
 
-router.post('/', _orders.default.makeOrder);
-router.get('/', _orders.default.getOrders);
-router.put('/:id', _orders.default.modifyOrder);
+router.post('/', _index.default, _orders.default.makeOrder);
+router.get('/', _index.default, _orders.default.getOrders);
+router.put('/:id', _index.default, _orders.default.modifyOrder);
 var _default = router;
 exports.default = _default;

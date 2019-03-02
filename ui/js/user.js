@@ -1,11 +1,17 @@
 // user.js
-const userDisplay = document.querySelector('#user-display'),
-        meals = document.querySelector('.row'),
-        choice = document.querySelector('.btn');
+
+// const userDisplay = document.querySelector('#user-display');
+const meals = document.querySelector('.row');
+// const choice = document.querySelector('.btn');
+const user = document.querySelector('#user');
+
+const username = JSON.parse(localStorage.getItem('user')).name;
+user.innerHTML = username;
 
 const myOrders = [];
 
-const menu = [{ name: ' White Rice / Chicken', price: '40.00' },
+const menu = [{
+        name: ' White Rice / Chicken', price: '40.00' },
               { name: 'Jollof Rice', price: '25.00' },
               { name: 'Beans / Fried Plantain', price: '45:00' },
               { name: 'Boiled Yam/ Egg Sauce', price: '23.00' },
@@ -48,7 +54,7 @@ const pickMeal = () => {
 
     meals.addEventListener('click', pickMeal);
 }
-    
-    
-    
+
+
+
 
