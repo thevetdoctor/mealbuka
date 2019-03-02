@@ -39,7 +39,7 @@ const logIn = (e, _url, user) => {
       greeting.innerHTML = response.message;
       window.localStorage.setItem('user', JSON.stringify(user));
       window.localStorage.setItem('token', response.token);
-      if (response.message === 'Login successful' && user.isAdmin) {
+      if (response.message === 'Login successful' && user.isAdmin === true) {
         window.location.href = './meals.html';
       } else if (response.message === 'Login successful') {
         window.location.href = './user.html';

@@ -38,7 +38,7 @@ const signUp = (e, _url, user) => {
       greeting.innerHTML = response.message;
       window.localStorage.setItem('user', JSON.stringify(user));
       window.localStorage.setItem('token', response.token);
-      if (response.message === 'New User created' && user.isAdmin) {
+      if (response.message === 'New User created' && user.isAdmin === true) {
         window.location.href = './meals.html';
       } else if (response.message === 'New User created') {
         window.location.href = './user.html';
