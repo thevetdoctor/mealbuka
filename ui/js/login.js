@@ -12,6 +12,13 @@ const loginUrl = `${apiUrl}auth/users/login`;
 
 const logIn = (e, _url, user) => {
   e.preventDefault();
+
+  greeting.style.color = 'red';
+
+  if (loginEmail === '' && loginPassword === '') {
+    greeting.innerHTML = 'Please enter your details';
+    return;
+  }
   // eslint-disable-next-line no-param-reassign
   user = {
     email: loginEmail.value,
@@ -28,7 +35,7 @@ const logIn = (e, _url, user) => {
   })
     .then(res => res.json())
     .then((response) => {
-      console.log(response);
+      // console.log(response);
       greeting.innerHTML = response.message;
       window.localStorage.setItem('user', JSON.stringify(user));
       window.localStorage.setItem('token', response.token);
@@ -39,8 +46,10 @@ const logIn = (e, _url, user) => {
       }
     })
     .catch((error) => {
-      console.log(error);
-      greeting.innerHTML = 'Login Failed';
+      // console.log(error);
+      if (error) {
+        greeting.innerHTML = `${error}`;
+      }
     });
 };
 

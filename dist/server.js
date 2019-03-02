@@ -45,7 +45,7 @@ app.use('/auth/users/', _users.default);
 app.use('/sendMail', _sendMail.default);
 var port = process.env.PORT || 5000;
 app.get('/', function (req, res) {
-  res.sendFile(__dirname.replace('dist', 'ui\\index.html')); // res.sendFile(__dirname.replace('src', 'ui\\index.html'));
+  res.sendFile(__dirname.replace('dist', 'ui\\views\\index.html')); // res.sendFile(__dirname.replace('src', 'ui\\index.html'));
 });
 
 _models.sequelize.sync({

@@ -27,7 +27,7 @@ const menu = [{
     if (meals) {
         menu.forEach((meal) => {
             meals.innerHTML += `<div class="section">
-                                <img src="./images/meal2.jpg" alt="Food Image">
+                                <img src="../images/meal2.jpg" alt="Food Image">
                                 <br> ${meal.name} <br> N${meal.price} <br>
                                 <span class="btn">Click to choose</span>
                                 </div>`;
