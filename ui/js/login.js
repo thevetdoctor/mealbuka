@@ -35,8 +35,9 @@ const logIn = (e, _url, user) => {
   })
     .then(res => res.json())
     .then((response) => {
-      // console.log(response);
+      console.log(response);
       greeting.innerHTML = response.message;
+      window.localStorage.setItem('user', JSON.stringify(response));
       window.localStorage.setItem('user', JSON.stringify(user));
       window.localStorage.setItem('token', response.token);
       if (response.message === 'Login successful' && user.isAdmin === true) {
