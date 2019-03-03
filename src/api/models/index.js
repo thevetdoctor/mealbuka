@@ -12,9 +12,9 @@ import config from '../../config';
 //     host: config.host,
 //     port: config.port,
 //     dialect: 'postgres',
-//     dialectOptions: {
-//       ssl: true,
-//     },
+//     // dialectOptions: {
+//     //   ssl: true,
+//     // },
 //   },
 // );
 

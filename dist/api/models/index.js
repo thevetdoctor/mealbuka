@@ -20,9 +20,9 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 //     host: config.host,
 //     port: config.port,
 //     dialect: 'postgres',
-//     dialectOptions: {
-//       ssl: true,
-//     },
+//     // dialectOptions: {
+//     //   ssl: true,
+//     // },
 //   },
 // );
 var sequelize = new _sequelize.default(_config.default.herokuPostgresUri, {
