@@ -1,45 +1,51 @@
 // user.js
 
-// const userDisplay = document.querySelector('#user-display');
-// const choice = document.querySelector('.btn');
-
 const meals = document.querySelector('.row');
 const user = document.querySelector('#user');
+// eslint-disable-next-line no-undef
+const mealUrl = `${apiUrl}api/v1/meals`;
+let menu = [];
+const username = JSON.parse(localStorage.getItem('user'));
+user.innerHTML = username.name;
 
-const username = JSON.parse(localStorage.getItem('user')).name;
-user.innerHTML = username;
+// eslint-disable-next-line no-shadow
+const fetchMeals = (mealUrl) => {
+  // let user = localStorage.getItem('user');
+  const token = localStorage.getItem('token');
 
-// const myOrders = [];
-
-// const menu = [
-//     {
-//         name: ' White Rice / Chicken', price: '40.00' },
-//               { name: 'Jollof Rice', price: '25.00' },
-//               { name: 'Beans / Fried Plantain', price: '45:00' },
-//               { name: 'Boiled Yam/ Egg Sauce', price: '23.00' },
-//               { name: 'Toasted Bread / Egg Sauce', price: '43.00' },
-//               { name: 'Indomie Special', price: '30.00' },
-//               { name: 'Fufu/ Vegetable', price: '23.00' },
-//               { name: 'Amala / Ewedu', price: '40.00' },
-//               { name: 'Eba / Egusi', price: '25.00' },
-//               { name: 'Yam Porridge', price: '24.00' },
-//               { name: 'Fried Rice / Chicken', price: '32.00' },
-//               { name: 'Catfish Peppersoup', price: '34.00' }];
-
-if (meals) {
-  menu.forEach((meal) => {
-    meals.innerHTML += `<div class="section">
+  fetch(mealUrl, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${token}`,
+    },
+  })
+    .then(res => res.json())
+    .then((response) => {
+      // console.log(response);
+      if (response.status === 200) {
+        menu = response.data;
+        menu.forEach((meal) => {
+          meals.innerHTML += `<div class="section">
                                 <img src="../images/meal2.jpg" alt="Food Image">
                                 <br> ${meal.name} <br> N${meal.price} <br>
                                 <span class="btn">Click to choose</span>
                                 </div>`;
-  });
+        });
+      } else {
+        meals.innerHTML = `${response.error}`;
+      }
+    });
+};
 
-}
+fetchMeals(mealUrl);
+
+// console.log(menu);
 
 
 let count = 0;
 const pickMeal = () => {
+  // eslint-disable-next-line no-restricted-globals
   const e = event.target;
   // console.log(e);
   if (e.innerText !== 'Click to choose') {
@@ -54,7 +60,7 @@ const pickMeal = () => {
     // myOrders.push({name: })
   } else {
     count += 1;
-    e.innerText = `Added ${count }`;
+    e.innerText = `Added ${count}`;
   }
 };
 

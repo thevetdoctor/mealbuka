@@ -4,6 +4,7 @@ const login = document.querySelector('#login');
 const loginEmail = document.querySelector('#loginEmail');
 const loginPassword = document.querySelector('#loginPassword');
 const greeting = document.querySelector('#greeting');
+// eslint-disable-next-line no-undef
 const loginUrl = `${apiUrl}auth/users/login`;
 
 // const display = document.querySelector('.display');
@@ -35,12 +36,11 @@ const logIn = (e, _url, user) => {
   })
     .then(res => res.json())
     .then((response) => {
-      console.log(response);
+      // console.log(response);
       greeting.innerHTML = response.message;
-      window.localStorage.setItem('user', JSON.stringify(response));
-      window.localStorage.setItem('user', JSON.stringify(user));
+      window.localStorage.setItem('user', JSON.stringify(response.newUser));
       window.localStorage.setItem('token', response.token);
-      if (response.message === 'Login successful' && user.isAdmin === true) {
+      if (response.message === 'Login successful' && response.newUser.isAdmin === true) {
         window.location.href = './meals.html';
       } else if (response.message === 'Login successful') {
         window.location.href = './user.html';
