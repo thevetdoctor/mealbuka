@@ -78,6 +78,28 @@ var ordersController = {
       }
     });
   },
+  getSpecificOrders: function getSpecificOrders(req, res) {
+    var id = parseInt(req.params.id, 10);
+
+    _models.default.Order.findAll({
+      where: {
+        userId: id
+      }
+    }).then(function (orders) {
+      if (orders.length > 0) {
+        res.status(200).json({
+          status: 200,
+          data: orders,
+          message: "Orders displayed for userId ".concat(id)
+        });
+      } else {
+        res.status(400).json({
+          status: 400,
+          error: 'No orders available'
+        });
+      }
+    });
+  },
   modifyOrder: function modifyOrder(req, res) {
     var orderId = parseInt(req.params.id, 10);
     var meal = req.body.mealId;

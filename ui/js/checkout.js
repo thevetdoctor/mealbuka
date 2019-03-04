@@ -12,14 +12,12 @@ let orders = [];
 const username = JSON.parse(localStorage.getItem('user'));
 user.innerHTML = username.name;
 
-// console.log(username);
-
 
 // eslint-disable-next-line no-shadow
 const fetchOrders = (orderUrl) => {
   const token = localStorage.getItem('token');
 
-  fetch(orderUrl, {
+  fetch(`${orderUrl}/${username.id}`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
@@ -55,6 +53,10 @@ const fetchOrders = (orderUrl) => {
       } else {
         rows.innerHTML = `${response1.error}`;
       }
+    })
+    .catch((error) => {
+      // eslint-disable-next-line no-console
+      console.log(error);
     });
 };
 

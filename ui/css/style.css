@@ -128,7 +128,7 @@ footer {
     background-color: green;
     padding: 5px;
     border-radius: 5px;
-    display: inline-block;
+    display: inline;
 }
 
 .btn:hover {

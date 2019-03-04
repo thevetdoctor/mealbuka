@@ -18,6 +18,7 @@ var router = _express.default.Router();
 
 router.post('/', _index.default, _orders.default.makeOrder);
 router.get('/', _index.default, _orders.default.getOrders);
+router.get('/:id', _index.default, _orders.default.getSpecificOrders);
 router.put('/:id', _index.default, _orders.default.modifyOrder);
 var _default = router;
 exports.default = _default;

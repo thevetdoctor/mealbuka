@@ -1,4 +1,5 @@
 // import User from './users';
+// eslint-disable-next-line no-unused-vars
 import regeneratorRuntime from 'regenerator-runtime';
 import models from './index';
 // import mealsRecord from './meals';
@@ -44,6 +45,26 @@ const seeders = {
       date: new Date().toDateString(),
     });
 
+    await models.Order.create({
+      id: 4,
+      userId: 1,
+      mealId: 5,
+      date: new Date().toDateString(),
+    });
+
+    await models.Order.create({
+      id: 5,
+      userId: 2,
+      mealId: 3,
+      date: new Date().toDateString(),
+    });
+
+    await models.Order.create({
+      id: 6,
+      userId: 2,
+      mealId: 6,
+      date: new Date().toDateString(),
+    });
     await models.Meal.create({
       id: 1,
       name: 'White Rice & Chicken',

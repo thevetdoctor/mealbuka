@@ -64,6 +64,25 @@ const ordersController = {
   },
 
 
+  getSpecificOrders: (req, res) => {
+    const id = parseInt(req.params.id, 10);
+    models.Order.findAll({ where: { userId: id } })
+      .then((orders) => {
+        if (orders.length > 0) {
+          res.status(200).json({
+            status: 200,
+            data: orders,
+            message: `Orders displayed for userId ${id}`,
+          });
+        } else {
+          res.status(400).json({
+            status: 400,
+            error: 'No orders available',
+          });
+        }
+      });
+  },
+
   modifyOrder: (req, res) => {
     const orderId = parseInt(req.params.id, 10);
     const meal = req.body.mealId;

@@ -11,6 +11,8 @@ router.post('/', auth, ordersController.makeOrder);
 
 router.get('/', auth, ordersController.getOrders);
 
+router.get('/:id', auth, ordersController.getSpecificOrders);
+
 router.put('/:id', auth, ordersController.modifyOrder);
 
 
