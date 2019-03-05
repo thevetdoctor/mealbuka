@@ -40,9 +40,9 @@ Alternatively,
 
 To use the remote version of the application,
 
-+ Navigate to 'https://mealbookers.herokuapp.com/'
++ Navigate to 'https://mealbuka.herokuapp.com/'
 
-- or have a peep through 'https://thevetdoctor.github.io/book-a-meal/ui/index.html'
+- or have a peep through 'https://thevetdoctor.github.io/mealbuka/ui/index.html'
 
 
 - Here, you can:
