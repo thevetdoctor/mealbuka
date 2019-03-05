@@ -109,21 +109,24 @@ const UsersController = {
   },
 
 
-  // admin: (req, res, next) => {
-  //   // const userList = usersRecord.map(user => user);
-
-  //   jwt.verify(req.token, 'secretKey', (err, data) => {
-  //     if (err) {
-  //       res.sendStatus(403);
-  //     } else {
-  //       res.status(200).json({
-  //         status: 200,
-  //         message: 'Registered users displayed',
-  //         // list: userList,
-  //       });
-  //     }
-  //   });
-  // },
+  admin: (req, res, next) => {
+    models.User.findAll()
+      .then((response) => {
+        if (response.length > 0) {
+          const userList = response;
+          res.status(200).json({
+            status: 200,
+            message: 'Registered users displayed',
+            list: userList,
+          });
+        } else {
+          res.status(400).json({
+            status: 400,
+            message: 'No users available',
+          });
+        }
+      });
+  },
 };
 
 
