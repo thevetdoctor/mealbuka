@@ -11,7 +11,7 @@ router.post('/signup', UsersController.signup);
 
 router.post('/login', UsersController.login);
 
-// router.get('/admin', auth, UsersController.admin);
+router.get('/admin', UsersController.admin);
 
 // router.post('/manageUser', auth, UsersController.manageUser);
 

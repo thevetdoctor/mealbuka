@@ -139,21 +139,24 @@ var UsersController = {
         error: 'Please enter your email & password'
       });
     }
-  } // admin: (req, res, next) => {
-  //   // const userList = usersRecord.map(user => user);
-  //   jwt.verify(req.token, 'secretKey', (err, data) => {
-  //     if (err) {
-  //       res.sendStatus(403);
-  //     } else {
-  //       res.status(200).json({
-  //         status: 200,
-  //         message: 'Registered users displayed',
-  //         // list: userList,
-  //       });
-  //     }
-  //   });
-  // },
-
+  },
+  admin: function admin(req, res, next) {
+    _models.default.User.findAll().then(function (response) {
+      if (response.length > 0) {
+        var userList = response;
+        res.status(200).json({
+          status: 200,
+          message: 'Registered users displayed',
+          list: userList
+        });
+      } else {
+        res.status(400).json({
+          status: 400,
+          message: 'No users available'
+        });
+      }
+    });
+  }
 };
 var _default = UsersController;
 exports.default = _default;
