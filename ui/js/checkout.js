@@ -26,7 +26,7 @@ const fetchOrders = (orderUrl) => {
   })
     .then(res1 => res1.json())
     .then((response1) => {
-    //   console.log(response);
+      console.log(response1);
       if (response1.status === 200) {
         orders = response1.data;
 
@@ -40,13 +40,17 @@ const fetchOrders = (orderUrl) => {
         })
           .then(res2 => res2.json())
           .then((response2) => {
+            console.log(response2);
+            if (response2 === undefined) {
+              return;
+            }
             orders.forEach((order) => {
               rows.innerHTML += `<div class="section">
                                 <img src="../images/meal2.jpg" alt="Food Image">
-                                <br> ${response2.data[order.mealId].name} <br>
+                                <br> ${response2.data[order.mealId - 1].name} <br>
                                 <span class="btn">Remove</span>
                                 </div>`;
-              totalValue += parseInt(response2.data[order.mealId].price, 10);
+              totalValue += parseInt(response2.data[order.mealId - 1].price, 10);
             });
             mealValue.innerHTML = `N${totalValue}.00`;
           });

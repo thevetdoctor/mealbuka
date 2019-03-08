@@ -35,6 +35,10 @@ var mealsController = {
       var lastId = Math.max.apply(Math, _toConsumableArray(ids));
 
       if (!mealNames.includes(meal.name)) {
+        if (response.length < 1) {
+          meal.id = 1;
+        }
+
         meal.id = lastId + 1;
 
         _models.default.Meal.create(meal).then(function (result) {

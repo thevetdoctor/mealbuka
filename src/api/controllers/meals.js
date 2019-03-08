@@ -18,6 +18,9 @@ const mealsController = {
         const mealNames = response.map(value => value.name);
         const lastId = Math.max(...ids);
         if (!mealNames.includes(meal.name)) {
+          if (response.length < 1) {
+            meal.id = 1;
+          }
           meal.id = lastId + 1;
           models.Meal.create(meal)
             .then((result) => {

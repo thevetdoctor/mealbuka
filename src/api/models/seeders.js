@@ -24,6 +24,14 @@ const seeders = {
       isAdmin: false,
     });
 
+    await models.User.create({
+      id: 3,
+      name: 'admin',
+      email: 'admin@gmail.com',
+      password: 'admin',
+      isAdmin: true,
+    });
+
     await models.Order.create({
       id: 1,
       userId: 1,
@@ -61,7 +69,7 @@ const seeders = {
 
     await models.Order.create({
       id: 6,
-      userId: 2,
+      userId: 3,
       mealId: 6,
       date: new Date().toDateString(),
     });
