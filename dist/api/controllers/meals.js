@@ -81,22 +81,33 @@ var mealsController = {
   deleteMeal: function deleteMeal(req, res) {
     var mealId = parseInt(req.params.id, 10);
 
-    _models.default.Meal.destroy({
-      where: {
-        id: mealId
-      }
-    }).then(function (response) {
-      if (response > 0) {
-        res.status(200).json({
-          status: 200,
+    _models.default.Meal.findAll().then(function (response1) {
+      if (response1.length < 2) {
+        res.status(400).json({
+          status: 400,
           data: [{
-            message: "Meal with ID ".concat(mealId, " deleted")
+            message: 'Meal Tray cannot be emptied'
           }]
         });
       } else {
-        res.status(400).json({
-          status: 400,
-          error: 'Meal not deleted'
+        _models.default.Meal.destroy({
+          where: {
+            id: mealId
+          }
+        }).then(function (response2) {
+          if (response2 > 0) {
+            res.status(200).json({
+              status: 200,
+              data: [{
+                message: "Meal with ID ".concat(mealId, " deleted")
+              }]
+            });
+          } else {
+            res.status(400).json({
+              status: 400,
+              error: 'Meal not deleted'
+            });
+          }
         });
       }
     });

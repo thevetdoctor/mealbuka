@@ -50,6 +50,7 @@ listUsers();
 
 const sendMail = () => {
   const token = localStorage.getItem('token');
+  display.style.color = 'red';
 
   fetch(`${url}sendMail`, {
     method: 'POST',
@@ -61,7 +62,7 @@ const sendMail = () => {
     .then(res => res.json())
     .then((response) => {
       console.log(response);
-      dispatchEvent.innerHTML = `${response.data.message}`;
+      display.innerHTML = `${response.data.message.slice(0, 19)}`;
     })
     .catch((error) => {
       console.log(error);
