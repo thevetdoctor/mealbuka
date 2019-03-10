@@ -170,14 +170,14 @@ var ordersController = {
     }
   },
   confirmOrders: function confirmOrders(req, res) {
-    var orderId = parseInt(req.params.id, 10);
-
     if (!req.params.id || req.params.id === '') {
       res.status(400).json({
         status: 'orderId not supplied'
       });
     } else {
       _models.default.Order.update({
+        confirmed: true
+      }, {
         where: {
           id: orderId
         }
@@ -191,7 +191,7 @@ var ordersController = {
         } else {
           res.status(400).json({
             status: 400,
-            error: "Order id ".concat(orderId, " not deleted")
+            error: 'Orders confirmed'
           });
         }
       });

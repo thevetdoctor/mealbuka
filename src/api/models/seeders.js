@@ -37,6 +37,7 @@ const seeders = {
       userId: 1,
       mealId: 1,
       date: new Date().toDateString(),
+      confirmed: false,
     });
 
     await models.Order.create({
@@ -44,6 +45,7 @@ const seeders = {
       userId: 2,
       mealId: 1,
       date: new Date().toDateString(),
+      confirmed: false,
     });
 
     await models.Order.create({
@@ -51,6 +53,7 @@ const seeders = {
       userId: 1,
       mealId: 3,
       date: new Date().toDateString(),
+      confirmed: false,
     });
 
     await models.Order.create({
@@ -58,6 +61,7 @@ const seeders = {
       userId: 1,
       mealId: 5,
       date: new Date().toDateString(),
+      confirmed: false,
     });
 
     await models.Order.create({
@@ -65,6 +69,7 @@ const seeders = {
       userId: 2,
       mealId: 3,
       date: new Date().toDateString(),
+      confirmed: false,
     });
 
     await models.Order.create({
@@ -72,7 +77,9 @@ const seeders = {
       userId: 3,
       mealId: 6,
       date: new Date().toDateString(),
+      confirmed: false,
     });
+
     await models.Meal.create({
       id: 1,
       name: 'White Rice & Chicken',
@@ -109,41 +116,41 @@ const seeders = {
       price: '20.00',
     });
 
-    // await models.Meal.create({
-    //   id: 7,
-    //   name: 'Fufu & Vegetable Soup',
-    //   price: '40.00',
-    // });
+    await models.Meal.create({
+      id: 7,
+      name: 'Fufu & Vegetable Soup',
+      price: '40.00',
+    });
 
-    // await models.Meal.create({
-    //   id: 8,
-    //   name: 'Amala & Ewedu Soup',
-    //   price: '40.00',
-    // });
+    await models.Meal.create({
+      id: 8,
+      name: 'Amala & Ewedu Soup',
+      price: '40.00',
+    });
 
-    // await models.Meal.create({
-    //   id: 9,
-    //   name: 'Eba & Egusi Soup',
-    //   price: '40.00',
-    // });
+    await models.Meal.create({
+      id: 9,
+      name: 'Eba & Egusi Soup',
+      price: '40.00',
+    });
 
-    // await models.Meal.create({
-    //   id: 10,
-    //   name: 'Yam Porridge',
-    //   price: '30.00',
-    // });
+    await models.Meal.create({
+      id: 10,
+      name: 'Yam Porridge',
+      price: '30.00',
+    });
 
-    // await models.Meal.create({
-    //   id: 11,
-    //   name: 'Fried Rice & Chicken',
-    //   price: '35.00',
-    // });
+    await models.Meal.create({
+      id: 11,
+      name: 'Fried Rice & Chicken',
+      price: '35.00',
+    });
 
-    // await models.Meal.create({
-    //   id: 12,
-    //   name: 'Catfish Peppersoup',
-    //   price: '40.00',
-    // });
+    await models.Meal.create({
+      id: 12,
+      name: 'Catfish Peppersoup',
+      price: '40.00',
+    });
 
     await models.Menu.create({
       id: 1,
@@ -151,17 +158,17 @@ const seeders = {
       list: [1, 2, 3, 4, 5, 6],
     });
 
-    // await models.Menu.create({
-    //   id: 2,
-    //   date: new Date().toDateString(),
-    //   list: [5, 6, 7, 8],
-    // });
+    await models.Menu.create({
+      id: 2,
+      date: new Date().toDateString(),
+      list: [5, 6, 7, 8],
+    });
 
-    // await models.Menu.create({
-    //   id: 3,
-    //   date: new Date().toDateString(),
-    //   list: [9, 10, 11, 12],
-    // });
+    await models.Menu.create({
+      id: 3,
+      date: new Date().toDateString(),
+      list: [9, 10, 11, 12],
+    });
   },
 };
 

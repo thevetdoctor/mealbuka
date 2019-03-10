@@ -61,7 +61,8 @@ var seeders = {
                 id: 1,
                 userId: 1,
                 mealId: 1,
-                date: new Date().toDateString()
+                date: new Date().toDateString(),
+                confirmed: false
               });
 
             case 8:
@@ -70,7 +71,8 @@ var seeders = {
                 id: 2,
                 userId: 2,
                 mealId: 1,
-                date: new Date().toDateString()
+                date: new Date().toDateString(),
+                confirmed: false
               });
 
             case 10:
@@ -79,7 +81,8 @@ var seeders = {
                 id: 3,
                 userId: 1,
                 mealId: 3,
-                date: new Date().toDateString()
+                date: new Date().toDateString(),
+                confirmed: false
               });
 
             case 12:
@@ -88,7 +91,8 @@ var seeders = {
                 id: 4,
                 userId: 1,
                 mealId: 5,
-                date: new Date().toDateString()
+                date: new Date().toDateString(),
+                confirmed: false
               });
 
             case 14:
@@ -97,7 +101,8 @@ var seeders = {
                 id: 5,
                 userId: 2,
                 mealId: 3,
-                date: new Date().toDateString()
+                date: new Date().toDateString(),
+                confirmed: false
               });
 
             case 16:
@@ -106,7 +111,8 @@ var seeders = {
                 id: 6,
                 userId: 3,
                 mealId: 6,
-                date: new Date().toDateString()
+                date: new Date().toDateString(),
+                confirmed: false
               });
 
             case 18:
@@ -159,13 +165,77 @@ var seeders = {
 
             case 30:
               _context.next = 32;
+              return _index.default.Meal.create({
+                id: 7,
+                name: 'Fufu & Vegetable Soup',
+                price: '40.00'
+              });
+
+            case 32:
+              _context.next = 34;
+              return _index.default.Meal.create({
+                id: 8,
+                name: 'Amala & Ewedu Soup',
+                price: '40.00'
+              });
+
+            case 34:
+              _context.next = 36;
+              return _index.default.Meal.create({
+                id: 9,
+                name: 'Eba & Egusi Soup',
+                price: '40.00'
+              });
+
+            case 36:
+              _context.next = 38;
+              return _index.default.Meal.create({
+                id: 10,
+                name: 'Yam Porridge',
+                price: '30.00'
+              });
+
+            case 38:
+              _context.next = 40;
+              return _index.default.Meal.create({
+                id: 11,
+                name: 'Fried Rice & Chicken',
+                price: '35.00'
+              });
+
+            case 40:
+              _context.next = 42;
+              return _index.default.Meal.create({
+                id: 12,
+                name: 'Catfish Peppersoup',
+                price: '40.00'
+              });
+
+            case 42:
+              _context.next = 44;
               return _index.default.Menu.create({
                 id: 1,
                 date: new Date().toDateString(),
                 list: [1, 2, 3, 4, 5, 6]
               });
 
-            case 32:
+            case 44:
+              _context.next = 46;
+              return _index.default.Menu.create({
+                id: 2,
+                date: new Date().toDateString(),
+                list: [5, 6, 7, 8]
+              });
+
+            case 46:
+              _context.next = 48;
+              return _index.default.Menu.create({
+                id: 3,
+                date: new Date().toDateString(),
+                list: [9, 10, 11, 12]
+              });
+
+            case 48:
             case "end":
               return _context.stop();
           }

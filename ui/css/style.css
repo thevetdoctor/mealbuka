@@ -200,6 +200,12 @@ footer {
     color: #fff;
 }
 
+#send-mail {
+    color: #fff;
+    border: none;
+    padding: 10px;
+}
+
 @media screen  and (max-width: 550px) {
 
     body {
