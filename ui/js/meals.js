@@ -38,6 +38,7 @@ const update = () => {
         display.innerHTML = `${response.error}`;
       }
     }).catch((error) => {
+      // eslint-disable-next-line no-console
       console.log(error);
     });
 };
@@ -45,6 +46,7 @@ const update = () => {
 update();
 
 
+// eslint-disable-next-line consistent-return
 const addMeal = () => {
   const newMeal = { name: mealName.value, price: mealPrice.value };
   const token = localStorage.getItem('token');
@@ -86,6 +88,7 @@ const addMeal = () => {
 
 const getId = (e) => {
   if (!e) {
+    // eslint-disable-next-line no-param-reassign
     e = window.event;
   }
 };
@@ -112,9 +115,11 @@ const deleteMeal = (e) => {
   })
     .then(res => res.json())
     .then((response) => {
+      // eslint-disable-next-line no-console
       console.log(response.data[0].message);
     })
     .catch((error) => {
+      // eslint-disable-next-line no-console
       console.log(error);
     });
   update();
@@ -124,6 +129,7 @@ const editMeal = (e) => {
   e.preventDefault();
   getId(e);
   if (e.target.parentNode === null || e.target.parentNode.parentNode === null) {
+    // eslint-disable-next-line no-console
     console.log('This is an input tag');
     return;
   }
@@ -146,15 +152,18 @@ const modifyMeal = (e) => {
   const token = localStorage.getItem('token');
 
   let btnId = e.target.getAttribute('id');
+  // eslint-disable-next-line no-console
   console.log(btnId);
   const btnClass = e.target.getAttribute('class');
   btnId = parseInt(btnId, 10);
 
   if (btnClass === 'delete') {
+    // eslint-disable-next-line no-console
     console.log(`delete ${btnId}`);
     return;
   }
 
+  // eslint-disable-next-line no-console
   console.log(`update ${btnId}`);
   // eslint-disable-next-line no-undef
   fetch(`${apiUrl}api/v1/meals/${btnId}`, {
@@ -166,8 +175,10 @@ const modifyMeal = (e) => {
   })
     .then(res => res.json())
     .then((response) => {
+      // eslint-disable-next-line no-console
       console.log(response.data[0].message);
     })
+    // eslint-disable-next-line no-unused-vars
     .catch((error) => {
       // console.log(error);
     });

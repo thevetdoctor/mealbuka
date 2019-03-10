@@ -5,6 +5,7 @@ const orderList = document.querySelector('.order-list');
 const salesUrl = `${apiUrl}api/v1/orders`;
 
 const user = document.querySelector('#user');
+const totalHandle = document.querySelector('.total');
 const total = document.querySelector('.total-value');
 const username = JSON.parse(localStorage.getItem('user'));
 user.innerHTML = `${username.name}, `;
@@ -29,6 +30,7 @@ const listOrders = (url) => {
       if (response1.data === null) {
         return;
       }
+      console.log(response1);
       // eslint-disable-next-line no-undef
       fetch(`${apiUrl}api/v1/meals`, {
         method: 'GET',
@@ -56,6 +58,11 @@ const listOrders = (url) => {
               const meals = response2.data;
               const users = response3.list;
               let totalValue = 0;
+              if (orders === undefined) {
+                totalHandle.style.display = 'none';
+                orderList.innerHTML = 'No order available';
+                return;
+              }
               orders.forEach((order) => {
                 orderList.innerHTML += `<div class="meal-class"> ${order.id} <span>${meals[order.mealId - 1].name}</span><span> N${meals[order.mealId - 1].price}</span><span>: ${users[order.userId - 1].name}</span> </div>`;
                 totalValue += parseInt(meals[order.mealId - 1].price, 10);

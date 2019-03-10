@@ -9,6 +9,7 @@ const ordersController = {
       userId: req.body.userId,
       mealId: req.body.mealId,
       date: new Date().toDateString(),
+      confirmed: false,
     };
 
     models.Order.findAll()
@@ -111,6 +112,58 @@ const ordersController = {
             res.status(400).json({
               status: 400,
               error: `Order id ${orderId} not updated`,
+            });
+          }
+        });
+    }
+  },
+
+
+  deleteOrder: (req, res) => {
+    const orderId = parseInt(req.params.id, 10);
+
+    if (!req.params.id || req.params.id === '') {
+      res.status(400).json({
+        status: 'orderId not supplied',
+      });
+    } else {
+      models.Order.destroy({ where: { id: orderId } })
+        .then((response) => {
+          if (response > 0) {
+            res.status(200).json({
+              status: 200,
+              data: response,
+              message: 'Order deleted',
+            });
+          } else {
+            res.status(400).json({
+              status: 400,
+              error: `Order id ${orderId} not deleted`,
+            });
+          }
+        });
+    }
+  },
+
+
+  confirmOrders: (req, res) => {
+    if (!req.params.id || req.params.id === '') {
+      res.status(400).json({
+        status: 'orderId not supplied',
+      });
+    } else {
+      models.Order.update({ confirmed: true }, { where: { id: orderId } })
+        .then((response) => {
+          if (response > 0) {
+            res.status(200).json({
+              status: 200,
+              data: response,
+              message: 'Order deleted',
+            });
+          } else {
+            res.status(400).json({
+              status: 400,
+              error: 'Orders confirmed',
             });
           }
         });

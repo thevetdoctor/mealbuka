@@ -12,24 +12,15 @@ var _config = _interopRequireDefault(require("../../config"));
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 // api/models/index.js
-// const sequelize = new Sequelize(
-//   config.database,
-//   config.username,
-//   config.password,
-//   {
-//     host: config.host,
-//     port: config.port,
-//     dialect: 'postgres',
-//     // dialectOptions: {
-//     //   ssl: true,
-//     // },
-//   },
-// );
-var sequelize = new _sequelize.default(_config.default.herokuPostgresUri, {
-  dialectOptions: {
-    ssl: true
-  }
-});
+var sequelize = new _sequelize.default(_config.default.database, _config.default.username, _config.default.password, {
+  host: _config.default.host,
+  port: _config.default.port,
+  dialect: 'postgres' // dialectOptions: {
+  //   ssl: true,
+  // },
+
+}); // const sequelize = new Sequelize(config.herokuPostgresUri, { dialectOptions: { ssl: true } });
+
 exports.sequelize = sequelize;
 var models = {
   Meal: sequelize.import('./mealsModel'),
