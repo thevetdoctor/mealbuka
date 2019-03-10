@@ -6,7 +6,7 @@ body {
     margin: 0;
     padding: 0;
     font-family: 'Raleway', sans-serif;
-    font-size: 0.7em;
+    font-size: 0.9em;
     line-height: 1.5;
     text-align: center;
 }
@@ -64,9 +64,24 @@ li a {
     /* flex-basis: 50%; */
 }
 
+.rows {
+    display: flex;
+    flex-flow: row wrap;
+    /* align-items: stretch; */
+    justify-content: center;
+    /* flex-basis: 50%; */
+}
+
 .row-top {
     border-top: 1px solid #fff;
 }
+
+/* .display {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 4px;
+} */
 
 .meal {
     border-top: #fff solid 1px;
@@ -74,14 +89,19 @@ li a {
     padding-top: 10px;
 }
 
-.meal-class {
+.meal-class, .user-class {
     display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    padding: 4px;
-}
+    flex-basis: 25%;
+    /* flex-direction: row nowrap; */
+    justify-content: space-between;
+    padding: 10px;
+    border-top: 1px solid;
+    border-radius: 5px;}
 
 .section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     border-radius: 10px;
     flex-basis: 30%;
     font-size: 0.7em;
@@ -164,6 +184,28 @@ footer {
     font-size: 1em;
 }
 
+.checkout-btns {
+    flex: row;
+}
+
+.total {
+    border: 1px solid #fff;
+    border-radius: 5px;
+    padding: 5px;
+    font-size: 1.4em;
+}
+
+.delete a {
+    text-decoration: none;
+    color: #fff;
+}
+
+#send-mail {
+    color: #fff;
+    border: none;
+    padding: 10px;
+}
+
 @media screen  and (max-width: 550px) {
 
     body {
@@ -212,4 +254,41 @@ footer {
     img {
         width: 50%;
     }
+
+    .display {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 4px;
+}
+
+    .meal-class, .user-class {
+    display: flex;
+    flex-direction: column;
+    flex-basis: 80%;
+    border: 1px solid;
+    border-radius: 5px;
+    justify-content: space-between;
+    padding: 4px;
+}
+
+.section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 10px;
+    flex-basis: 30%;
+    font-size: 0.7em;
+    padding-top: 15px;
+    margin-top: 10px;
+}
+
+.rows {
+    display: flex;
+    flex-flow: column;
+    /* align-items: stretch; */
+    justify-content: center;
+    /* flex-basis: 50%; */
+}
+
 }

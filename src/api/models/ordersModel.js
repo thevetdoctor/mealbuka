@@ -23,6 +23,10 @@ const order = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       unique: false,
     },
+
+    confirmed: {
+      type: DataTypes.BOOLEAN,
+    },
   }, { timestamps: false });
 
   // Order.associate = (models) => {

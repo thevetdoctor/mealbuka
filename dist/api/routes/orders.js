@@ -20,5 +20,6 @@ router.post('/', _index.default, _orders.default.makeOrder);
 router.get('/', _index.default, _orders.default.getOrders);
 router.get('/:id', _index.default, _orders.default.getSpecificOrders);
 router.put('/:id', _index.default, _orders.default.modifyOrder);
+router.delete('/:id', _index.default, _orders.default.deleteOrder);
 var _default = router;
 exports.default = _default;

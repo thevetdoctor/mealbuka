@@ -47,115 +47,195 @@ var seeders = {
 
             case 4:
               _context.next = 6;
-              return _index.default.Order.create({
-                id: 1,
-                userId: 1,
-                mealId: 1,
-                date: new Date().toDateString()
+              return _index.default.User.create({
+                id: 3,
+                name: 'admin',
+                email: 'admin@gmail.com',
+                password: 'admin',
+                isAdmin: true
               });
 
             case 6:
               _context.next = 8;
               return _index.default.Order.create({
-                id: 2,
-                userId: 2,
+                id: 1,
+                userId: 1,
                 mealId: 1,
-                date: new Date().toDateString()
+                date: new Date().toDateString(),
+                confirmed: false
               });
 
             case 8:
               _context.next = 10;
               return _index.default.Order.create({
-                id: 3,
-                userId: 1,
-                mealId: 3,
-                date: new Date().toDateString()
+                id: 2,
+                userId: 2,
+                mealId: 1,
+                date: new Date().toDateString(),
+                confirmed: false
               });
 
             case 10:
               _context.next = 12;
               return _index.default.Order.create({
-                id: 4,
+                id: 3,
                 userId: 1,
-                mealId: 5,
-                date: new Date().toDateString()
+                mealId: 3,
+                date: new Date().toDateString(),
+                confirmed: false
               });
 
             case 12:
               _context.next = 14;
               return _index.default.Order.create({
-                id: 5,
-                userId: 2,
-                mealId: 3,
-                date: new Date().toDateString()
+                id: 4,
+                userId: 1,
+                mealId: 5,
+                date: new Date().toDateString(),
+                confirmed: false
               });
 
             case 14:
               _context.next = 16;
               return _index.default.Order.create({
-                id: 6,
+                id: 5,
                 userId: 2,
-                mealId: 6,
-                date: new Date().toDateString()
+                mealId: 3,
+                date: new Date().toDateString(),
+                confirmed: false
               });
 
             case 16:
               _context.next = 18;
+              return _index.default.Order.create({
+                id: 6,
+                userId: 3,
+                mealId: 6,
+                date: new Date().toDateString(),
+                confirmed: false
+              });
+
+            case 18:
+              _context.next = 20;
               return _index.default.Meal.create({
                 id: 1,
                 name: 'White Rice & Chicken',
                 price: '30.00'
               });
 
-            case 18:
-              _context.next = 20;
+            case 20:
+              _context.next = 22;
               return _index.default.Meal.create({
                 id: 2,
                 name: 'Jollof Rice & Chicken',
                 price: '40.00'
               });
 
-            case 20:
-              _context.next = 22;
+            case 22:
+              _context.next = 24;
               return _index.default.Meal.create({
                 id: 3,
                 name: 'Beans & Fried Plantain',
                 price: '35.00'
               });
 
-            case 22:
-              _context.next = 24;
+            case 24:
+              _context.next = 26;
               return _index.default.Meal.create({
                 id: 4,
                 name: 'Boiled Yam & Egg Sauce',
                 price: '30.00'
               });
 
-            case 24:
-              _context.next = 26;
+            case 26:
+              _context.next = 28;
               return _index.default.Meal.create({
                 id: 5,
                 name: 'Toasted Bread & Egg Sauce',
                 price: '25.00'
               });
 
-            case 26:
-              _context.next = 28;
+            case 28:
+              _context.next = 30;
               return _index.default.Meal.create({
                 id: 6,
                 name: 'Indomie Special',
                 price: '20.00'
               });
 
-            case 28:
-              _context.next = 30;
+            case 30:
+              _context.next = 32;
+              return _index.default.Meal.create({
+                id: 7,
+                name: 'Fufu & Vegetable Soup',
+                price: '40.00'
+              });
+
+            case 32:
+              _context.next = 34;
+              return _index.default.Meal.create({
+                id: 8,
+                name: 'Amala & Ewedu Soup',
+                price: '40.00'
+              });
+
+            case 34:
+              _context.next = 36;
+              return _index.default.Meal.create({
+                id: 9,
+                name: 'Eba & Egusi Soup',
+                price: '40.00'
+              });
+
+            case 36:
+              _context.next = 38;
+              return _index.default.Meal.create({
+                id: 10,
+                name: 'Yam Porridge',
+                price: '30.00'
+              });
+
+            case 38:
+              _context.next = 40;
+              return _index.default.Meal.create({
+                id: 11,
+                name: 'Fried Rice & Chicken',
+                price: '35.00'
+              });
+
+            case 40:
+              _context.next = 42;
+              return _index.default.Meal.create({
+                id: 12,
+                name: 'Catfish Peppersoup',
+                price: '40.00'
+              });
+
+            case 42:
+              _context.next = 44;
               return _index.default.Menu.create({
                 id: 1,
                 date: new Date().toDateString(),
                 list: [1, 2, 3, 4, 5, 6]
               });
 
-            case 30:
+            case 44:
+              _context.next = 46;
+              return _index.default.Menu.create({
+                id: 2,
+                date: new Date().toDateString(),
+                list: [5, 6, 7, 8]
+              });
+
+            case 46:
+              _context.next = 48;
+              return _index.default.Menu.create({
+                id: 3,
+                date: new Date().toDateString(),
+                list: [9, 10, 11, 12]
+              });
+
+            case 48:
             case "end":
               return _context.stop();
           }

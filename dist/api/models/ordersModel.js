@@ -25,6 +25,9 @@ var order = function order(sequelize, DataTypes) {
       // type: DataTypes.DATE,
       type: DataTypes.STRING,
       unique: false
+    },
+    confirmed: {
+      type: DataTypes.BOOLEAN
     }
   }, {
     timestamps: false

@@ -6,6 +6,7 @@ const signupName = document.querySelector('#signupName');
 const signupEmail = document.querySelector('#signupEmail');
 const signupPassword = document.querySelector('#signupPassword');
 const confirmPassword = document.querySelector('#confirm-password');
+// eslint-disable-next-line no-undef
 const signupUrl = `${apiUrl}auth/users/signup`;
 
 
@@ -35,8 +36,9 @@ const signUp = (e, _url, user) => {
   })
     .then(res => res.json())
     .then((response) => {
+      // console.log(response);
       greeting.innerHTML = response.message;
-      window.localStorage.setItem('user', JSON.stringify(user));
+      window.localStorage.setItem('user', JSON.stringify(response.newUser));
       window.localStorage.setItem('token', response.token);
       if (response.message === 'New User created' && user.isAdmin === true) {
         window.location.href = './meals.html';
@@ -44,6 +46,7 @@ const signUp = (e, _url, user) => {
         window.location.href = './user.html';
       }
     })
+    // eslint-disable-next-line no-unused-vars
     .catch((error) => {
       greeting.innerHTML = 'Signup Failed';
     });

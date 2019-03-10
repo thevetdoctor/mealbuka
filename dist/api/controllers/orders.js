@@ -23,7 +23,8 @@ var ordersController = {
       id: null,
       userId: req.body.userId,
       mealId: req.body.mealId,
-      date: new Date().toDateString()
+      date: new Date().toDateString(),
+      confirmed: false
     };
 
     _models.default.Order.findAll().then(function (response) {
@@ -135,6 +136,62 @@ var ordersController = {
           res.status(400).json({
             status: 400,
             error: "Order id ".concat(orderId, " not updated")
+          });
+        }
+      });
+    }
+  },
+  deleteOrder: function deleteOrder(req, res) {
+    var orderId = parseInt(req.params.id, 10);
+
+    if (!req.params.id || req.params.id === '') {
+      res.status(400).json({
+        status: 'orderId not supplied'
+      });
+    } else {
+      _models.default.Order.destroy({
+        where: {
+          id: orderId
+        }
+      }).then(function (response) {
+        if (response > 0) {
+          res.status(200).json({
+            status: 200,
+            data: response,
+            message: 'Order deleted'
+          });
+        } else {
+          res.status(400).json({
+            status: 400,
+            error: "Order id ".concat(orderId, " not deleted")
+          });
+        }
+      });
+    }
+  },
+  confirmOrders: function confirmOrders(req, res) {
+    if (!req.params.id || req.params.id === '') {
+      res.status(400).json({
+        status: 'orderId not supplied'
+      });
+    } else {
+      _models.default.Order.update({
+        confirmed: true
+      }, {
+        where: {
+          id: orderId
+        }
+      }).then(function (response) {
+        if (response > 0) {
+          res.status(200).json({
+            status: 200,
+            data: response,
+            message: 'Order deleted'
+          });
+        } else {
+          res.status(400).json({
+            status: 400,
+            error: 'Orders confirmed'
           });
         }
       });

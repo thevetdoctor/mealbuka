@@ -18,6 +18,9 @@ const mealsController = {
         const mealNames = response.map(value => value.name);
         const lastId = Math.max(...ids);
         if (!mealNames.includes(meal.name)) {
+          if (response.length < 1) {
+            meal.id = 1;
+          }
           meal.id = lastId + 1;
           models.Meal.create(meal)
             .then((result) => {
@@ -56,18 +59,28 @@ const mealsController = {
 
   deleteMeal: (req, res) => {
     const mealId = parseInt(req.params.id, 10);
-    models.Meal.destroy({ where: { id: mealId } })
-      .then((response) => {
-        if (response > 0) {
-          res.status(200).json({
-            status: 200,
-            data: [{ message: `Meal with ID ${mealId} deleted` }],
-          });
-        } else {
+    models.Meal.findAll()
+      .then((response1) => {
+        if (response1.length < 2) {
           res.status(400).json({
             status: 400,
-            error: 'Meal not deleted',
+            data: [{ message: 'Meal Tray cannot be emptied' }],
           });
+        } else {
+          models.Meal.destroy({ where: { id: mealId } })
+            .then((response2) => {
+              if (response2 > 0) {
+                res.status(200).json({
+                  status: 200,
+                  data: [{ message: `Meal with ID ${mealId} deleted` }],
+                });
+              } else {
+                res.status(400).json({
+                  status: 400,
+                  error: 'Meal not deleted',
+                });
+              }
+            });
         }
       });
   },

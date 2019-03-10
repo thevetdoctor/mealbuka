@@ -15,5 +15,7 @@ router.get('/:id', auth, ordersController.getSpecificOrders);
 
 router.put('/:id', auth, ordersController.modifyOrder);
 
+router.delete('/:id', auth, ordersController.deleteOrder);
+
 
 export default router;
