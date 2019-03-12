@@ -25,12 +25,6 @@ script:
 after_success:
   - npm run coverage
 
-# after_script: cross-env NODE_ENV=test npm run coveralls
-# after_script: npm run coveralls
-
-
-# language: node_js
-
 # node_js:
 #   - "node"
 # env:
